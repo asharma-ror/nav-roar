@@ -1,0 +1,46 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="<%= root_url %>" class="navbar-brand"><strong>CLEAN CANVAS</strong></a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse custom_navbar" role="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<%= root_url %>">HOME</a></li>
+        <li class="<%= 'active' if params[:action] == 'about_us' %>"><a href="/about-us">ABOUT US</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/feature">Features</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/portfolio-item">Portfolio Item</a></li>
+            <li><a href="/coming-soon">Coming Soon</a></li>
+            <li><a href="/backgrounds">Backgrounds</a></li>
+          </ul>
+        </li>
+        <li class="<%= 'active' if params[:action] == 'pricing' %>">
+          <a href="/pricing">PRICING</a></li>
+        <li class=<%= 'active' if params[:action] == 'contact' %>>
+          <a href="/contact">CONTACT US</a></li>
+        <li class=<%= 'active' if params[:action] == 'blog' %>><a href="/blog">BLOG</a></li>
+        <% if current_user %>
+          <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li class="<%= 'active' if params[:controller] == 'registrations' && (params[:action] == 'new' || params[:action] == 'create') %>">
+            <a href="<%= new_user_registration_path %>">Sign up</a>
+          </li>
+          <li class="<%= 'active' if params[:controller] == 'sessions' && (params[:action] == 'new' || params[:action] == 'create') %>">
+            <a href="<%= new_user_session_path %>">Sign in</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

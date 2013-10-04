@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Roar</title>
+    <%= stylesheet_link_tag    "home_css", :media => "all" %>
+    <%= javascript_include_tag "home_js" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="<%= 'pull_top' if params[:action] == 'index' %>">
+    <% if params[:controller] == 'home' && params[:action] == 'index' %>
+      <%= render :partial => 'layouts/home_header' %>
+      <%= yield %>
+      <%= render :partial => 'layouts/home_footer' %>
+    <% else %>
+      <%= render :partial => 'layouts/home_other_header' %>
+      <%= yield %>
+      <%= render :partial => 'layouts/home_other_footer' %>
+    <% end %>
+  </body>
+</html>

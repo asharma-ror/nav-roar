@@ -3,10 +3,25 @@ Roar::Application.routes.draw do
  
   root :to => 'home#index'
 
+  match 'about-us' => 'home#about_us'
+  match 'pricing' => 'home#pricing'
+  match 'contact' => 'home#contact'
+  match 'blog' => 'home#blog'
+  match 'blogpost' => 'home#blogpost'
+  match 'feature' => 'home#feature'
+  match 'services' => 'home#services'
+  match 'portfolio' => 'home#portfolio'
+  match 'portfolio-item' => 'home#portfolio_item'
+  match 'coming-soon' => 'home#coming_soon'
+  match 'backgrounds' => 'home#backgrounds'
+  
+  
+  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
