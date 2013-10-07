@@ -1,12 +1,25 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div id="reset_pwd" class="reset_page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 box_wrapper">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="head">
+              <h4>Enter your email address below to receive instructions on how to reset your
+               password.</h4>
+              <div class="line"></div>
+            </div>
+            <div class="form">
+              <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+                <%= devise_error_messages! %>
+                <p><%= f.email_field :email, :autofocus => true, :class => "control-form", :placeholder => "Email address" %><p/><br/>
+                <%= f.submit "Reset password" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <p class="already">Know your password? <a href="<%= new_user_session_path %>"> Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>

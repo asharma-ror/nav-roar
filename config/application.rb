@@ -60,5 +60,10 @@ module Roar
     config.assets.version = '1.0'
     
     config.assets.initialize_on_precompile = false
+    config.to_prepare do
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "home_layout" }
+      Devise::SessionsController.layout proc{ |controller| user_signed_in? ? "application" : "home_layout" }
+      Devise::PasswordsController.layout proc{ |controller| user_signed_in? ? "application" : "home_layout" }
+    end
   end
 end
