@@ -14,8 +14,8 @@ Roar::Application.routes.draw do
   match 'portfolio-item' => 'home#portfolio_item'
   match 'coming-soon' => 'home#coming_soon'
   match 'backgrounds' => 'home#backgrounds'
-  
-  
+
+  resources :dashboard  
   
 
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -10,10 +10,12 @@
   <body class="<%= 'pull_top' if params[:action] == 'index' %>">
     <% if params[:controller] == 'home' && params[:action] == 'index' %>
       <%= render :partial => 'layouts/home_header' %>
+      <%= render :partial => 'layouts/flash_messages' %>
       <%= yield %>
       <%= render :partial => 'layouts/home_footer' %>
     <% else %>
       <%= render :partial => 'layouts/home_other_header' %>
+      <%= render :partial => 'layouts/flash_messages' %>
       <%= yield %>
       <%= render :partial => 'layouts/home_other_footer' %>
     <% end %>

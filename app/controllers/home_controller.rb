@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
+  before_filter :visit_home, :only => [:index]
   layout 'home_layout'
-  
+
   def index
   end
 

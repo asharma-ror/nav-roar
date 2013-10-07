@@ -1,3 +1,11 @@
 .navbar-collapse .navbar-nav.navbar-right:last-child {
   margin-right: 0 !important;
 }
+.navbar_custom{
+  background: linear-gradient(to bottom, #2C3742 0%, #28303A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+  border-bottom: 1px solid #191E23;
+  margin-bottom: 0 !important;
+}
+.custom_sidebar{
+
+}
