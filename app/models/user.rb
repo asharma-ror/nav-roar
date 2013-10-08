@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, 
-    :last_name, :address, :roles
+    :last_name, :address, :roles, :avatar, :company, :time_zone, :username
   # attr_accessible :title, :body
-
+  mount_uploader :avatar, AvatarUploader
+  
   ROLES = %w[Admin Standard Premium]
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }

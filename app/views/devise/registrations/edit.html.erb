@@ -1,38 +1,104 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- main container .wide-content is used for this layout without sidebar :)  -->
+<div class="content wide-content">
+  <div class="settings-wrapper" id="pad-wrapper">
+    <div class="row">
+      <!-- avatar column -->
+      <div class="col-md-3 col-md-offset-1 avatar-box">
+        <div class="personal-image">
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal image_upload', :multipart => true }) do |f| %>
+          <% if resource.avatar? %>
+            <%= image_tag(resource.avatar_url(:thumb), :class => "avatar img-circle") %>
+          <% else %>
+            <img src="/assets/personal-info.png" class="avatar img-circle">
+          <% end %>
+          <p>Upload a different photo...</p>
+          <%= f.file_field :avatar %>
+          <% end %>
+        </div>
+      </div>
+      <!-- edit form column -->
+      <div class="col-md-7 personal-info">
+        <div class="alert alert-info">
+          <i class="icon-lightbulb"></i>
+          This page shows an example of an alternative layout with the main navbar on the top
+          <br> using <strong>.content.wide-content</strong> for this main container
+        </div>
+        <h5 class="personal-title">Personal info</h5>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  
-  <div><%= f.label :first_name %><br />
-  <%= f.text_field :first_name, :autofocus => true %></div>
-  
-  <div><%= f.label :last_name %><br />
-  <%= f.text_field :last_name, :autofocus => true %></div>
-  
-  <div><%= f.label :address %><br />
-  <%= f.text_field :address, :autofocus => true %></div>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">First name:</label>
+            <div class="col-lg-8">
+              <%= f.text_field :first_name, :autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <%= f.text_field :last_name, :autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Company:</label>
+            <div class="col-lg-8">
+              <%= f.text_field :company, :autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Email:</label>
+            <div class="col-lg-8">
+              <%= f.email_field :email, :autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Time Zone:</label>
+            <div class="col-lg-8">
+              <div class="ui-select">
+                <%= f.select :time_zone,get_time_zone, :selected => resource.time_zone, :class => 'genForm_dropBox' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Username:</label>
+            <div class="col-lg-8">
+              <%= f.text_field :username, :autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Password:</label>
+            <i>(leave blank if you don't want to change it)</i>
+            <div class="col-lg-8">
+              <%= f.password_field :password, :autocomplete => "off", :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Confirm password:</label>
+            <div class="col-lg-8">
+              <%= f.password_field :password_confirmation, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Current password:</label>
+            <i>(we need your current password to confirm your changes)</i>
+            <div class="col-lg-8">
+              <%= f.password_field :current_password, :class => "form-control" %>
+            </div>
+          </div>          
+          <div class="actions">
+            <%= f.submit "Save Changes", :class => "btn-glow primary" %>
+            <span>OR</span>
+            <input type="reset" value="Cancel" class="reset">
+          </div>
+        <% end %>
+      </div>
+    </div>            
+  </div>
+</div>
+<!-- end main container -->
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
+<script type="text/javascript">
+  $('input[type=file]').change(function() { 
+    $('.image_upload').submit(); 
+  });
+</script>
