@@ -88,7 +88,7 @@
           <div class="actions">
             <%= f.submit "Save Changes", :class => "btn-glow primary" %>
             <span>OR</span>
-            <input type="reset" value="Cancel" class="reset">
+            <%= link_to 'Cancel', dashboard_index_path, :class => 'reset' %>
           </div>
         <% end %>
       </div>
